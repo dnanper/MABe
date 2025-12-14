@@ -1,0 +1,23 @@
+# MABe Mouse Behavior Detection - Requirements
+
+# Core Data Science
+numpy>=1.21.0
+pandas>=1.3.0
+scipy>=1.7.0
+
+# Machine Learning
+scikit-learn>=1.0.0
+lightgbm>=3.3.0
+xgboost>=1.5.0
+catboost>=1.0.0
+
+# Data Processing
+polars>=0.15.0
+
+# Utilities
+tqdm>=4.62.0
+joblib>=1.1.0
+
+# Optional (for GPU support)
+# Uncomment if you have CUDA installed
+# cupy-cuda11x  # Replace 11x with your CUDA version
