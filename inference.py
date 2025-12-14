@@ -26,7 +26,7 @@ model_save_dir = "/kaggle/input/mabe-ver-5/pytorch/default/1/results_5/saved_mod
 
 
 # ==================== MODEL PRUNING ====================
-
+# decrease
 def prune_models_from_weights_file(weights_path, model_files, threshold=0.01):
     """
     Load weights file and return list of model names that have weight >= threshold.
@@ -88,10 +88,6 @@ def load_models_and_predict(section_idx, body_parts_tracked_str, switch_mode, te
                            if os.path.isdir(os.path.join(model_base_path, d))]
     except: 
         return []
-    
-    # Filter by valid actions if defined globally
-    if 'VALID_ACTIONS_GLOBAL' in globals():
-        available_actions = [a for a in available_actions if a in VALID_ACTIONS_GLOBAL]
 
     for action in available_actions:
         action_dir = os.path.join(model_base_path, action)
@@ -294,6 +290,7 @@ def run_inference_loop(test, body_parts_tracked_list, train=None,
         
         # 1. Resolve overlaps intelligently (based on confidence)
         print(f"Resolving overlaps for {len(submission)} predictions...")
+        # decrease
         submission = remove_overlaps_by_confidence(submission)
         print(f"Predictions after overlap removal: {len(submission)}")
         
@@ -309,7 +306,8 @@ def run_inference_loop(test, body_parts_tracked_list, train=None,
         })
 
     # 2. Robustify (fill missing videos) & Save
-    submission_robust = robustify(submission, test, 'test')
+    # decrease when add ACTION_PROPERTIES
+    submission_robust = robustify(submission, test, 'test', ACTION_PROPERTIES)
     submission_robust.index.name = 'row_id'
     submission_robust.to_csv(output_file)
     print(f"\nSubmission created: {len(submission_robust)} predictions saved to {output_file}")

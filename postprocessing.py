@@ -9,7 +9,7 @@ from collections import defaultdict
 from tqdm import tqdm
 from config import DROP_BODY_PARTS
 
-
+# decrease
 def adaptive_temporal_smoothing(pred_df, action_properties=None):
     """Adaptive temporal smoothing based on action duration"""
     if action_properties is None:
@@ -29,7 +29,7 @@ def adaptive_temporal_smoothing(pred_df, action_properties=None):
         smoothed[action] = pred_df[action].rolling(window, min_periods=1, center=True).mean()
     return smoothed
 
-
+# decrease
 def predict_multiclass_with_confidence(pred, meta, action_thresholds=None, 
                                       action_properties=None, min_duration=3):
     """
@@ -119,7 +119,7 @@ def predict_multiclass_with_confidence(pred, meta, action_thresholds=None,
         
     return df_temp.drop(columns=['action_idx'])
 
-
+# decrease
 def remove_overlaps_by_confidence(submission):
     """Resolve overlapping predictions using confidence scores"""
     if submission.empty:
@@ -164,7 +164,7 @@ def remove_overlaps_by_confidence(submission):
         
     return df.loc[sorted(keep_indices)].reset_index(drop=True)
 
-
+# decrease
 def fill_missing_video_realistic(video_id, behaviors, frame_range, action_properties):
     """Fill missing video with realistic dummy predictions"""
     start_frame, stop_frame = frame_range
@@ -286,7 +286,7 @@ def robustify(submission, dataset, traintest, action_properties=None, traintest_
     submission = submission.sort_values(['video_id', 'start_frame']).reset_index(drop=True)
     return submission
 
-
+# decrease
 def compute_action_properties_from_df(train_df, annotation_dir):
     """Compute action statistics from training annotations"""
     print("Computing action properties from annotations...")
