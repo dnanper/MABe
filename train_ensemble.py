@@ -15,7 +15,9 @@ from sklearn.pipeline import make_pipeline
 from xgboost import XGBClassifier
 from catboost import CatBoostClassifier
 
-from config import SEED, USE_GPU
+from config import SEED, USE_GPU, DROP_BODY_PARTS
+from data_loader import generate_mouse_data
+from postprocessing import predict_multiclass_with_confidence
 from utils import _make_lgbm, _make_xgb, _make_cb, _fps_from_meta
 from models import StratifiedSubsetClassifier, StratifiedSubsetClassifierWEval
 from scoring import optimize_ensemble_weights
